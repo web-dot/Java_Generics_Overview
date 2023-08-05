@@ -32,6 +32,38 @@ public class GenericsTest {
 	 * 
 	 * */
 	
+	/**
+	 * Terms:
+	 * generic types:
+	 * 
+	 * type parameters				(class Box<T>{})
+	 * generic type - 				generic class or interface parameterized over types
+	 * generic class
+	 * generic type declaration		(Box<Integer> integerBox;) 
+	 * type parameter naming		(E,K,N,T,V)
+	 * generic type invocation		(replaces T(parameter) with concrete-value(argument))
+	 * type reference 				(Box<Integer> integerBox = new Box<Integer>())
+	 * type inference				(Box<Integer> integerBox = new Box<>())
+	 * parameterized type as type parameter	(OrderedPair<String, Box<Integer>)
+	 * 
+	 * generic methods:
+	 * public <K, V> double compare(Pair<K, V> p1, Pair<K, V> p2){}
+	 * 
+	 * bounded type parameters:
+	 * public <T extends Number> double sum(T a, T b){return a + b}
+	 * class NaturalNumber<T extends Number>{ private T n;}
+	 * 
+	 * multiple bounds:
+	 * <T extends B2 & B2 & B3>
+	 * 
+	 * */
+	
+	
+	//Bounded type parameters
+	public static <U extends Number> void inspect(U u) {
+		System.out.println("U: " + u.getClass().getName());
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -53,8 +85,24 @@ public class GenericsTest {
 		integerBox = new BoxWithGenerics<>();
 		
 		
+		inspect(7L);
+		
 	}
 	
+	
+	
+	/**
+	 * Generic methods and bounded type parameters
+	 * */
+	public static <T extends Comparable<T>> int countGreaterThan(T[] anArray, T elem) {
+		int count = 0;
+		for(T e : anArray) {
+			if(e.compareTo(elem) > 0) {
+				++count;
+			}
+		}
+		return count;
+	}
 	
 	
 	
